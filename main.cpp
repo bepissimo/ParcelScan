@@ -36,6 +36,7 @@ int main()
     while (cursor->next != nullptr)
     {
         cout << "ID: " << cursor->id << " " << "Acreage: " << cursor->size << endl;
+        cursor = cursor->next;
     }
 
     return 0;
@@ -61,10 +62,8 @@ void csvSort(double min, double max, string fileName, node* focusNode)
             split(text, ',', stringData, 100);
             if (isValidNumber(stringData[5]))
             {
-                cout << text << endl << endl;
-                cout << "STRING DATA: " << stringData[5] << endl;
                 double acreage = stod(stringData[5]);
-                if (acreage > min && acreage < max)
+                if (acreage >= min && acreage <= max)
                 {
                     focusNode->id = stoi(stringData[0]);
                     focusNode->size = acreage;
