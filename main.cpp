@@ -15,6 +15,7 @@ struct node
 void csvSort(double min, double max, string fileName, node* focusNode);
 int split (string splittee, char separator, string array[], int size);
 bool isValidNumber (string testString);
+void save(node* cursor);
 
 int main()
 {
@@ -38,6 +39,8 @@ int main()
         cout << "ID: " << cursor->id << " " << "Acreage: " << cursor->size << endl;
         cursor = cursor->next;
     }
+
+    save(root);
 
     return 0;
 }
@@ -120,4 +123,24 @@ bool isValidNumber (string testString)
     {
         return false;
     }
+}
+
+void save(node* cursor)
+{
+    cout << "Save to CSV (y/n)? ";
+    string input;
+    getline(cin, input);
+    if(input == "y")
+    {
+        ofstream outfile;
+        cout << "Please enter a file name with no extension to save to: ";
+        getline(cin, input);
+        outfile.open(input + ".csv");
+        while (cursor->next != nullptr)
+        {
+            outfile << "ID: " << cursor->id << " " << "Acreage: " << cursor->size << endl;
+            cursor = cursor->next;
+        }
+    }   
+    else {}
 }
