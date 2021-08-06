@@ -136,9 +136,10 @@ void save(node* cursor)
         cout << "Please enter a file name with no extension to save to: ";
         getline(cin, input);
         outfile.open(input + ".csv");
+        outfile << "ID,Acreage" << endl;
         while (cursor->next != nullptr)
         {
-            outfile << "ID: " << cursor->id << " " << "Acreage: " << cursor->size << endl;
+            outfile << cursor->id << "," << cursor->size << endl;
             cursor = cursor->next;
         }
     }   
